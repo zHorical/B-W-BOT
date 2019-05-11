@@ -1,4 +1,4 @@
-﻿const Discord = require("discord.js");
+const Discord = require("discord.js");
 const client = new Discord.Client();
 const prefix = "$";
 
@@ -43,7 +43,13 @@ client.on("message", async message => {
                                 m.delete();
                                     message.channel.send(`:ballot_box_with_check: | Done ... The Broadcast Message Has Been Sent For ${message.guild.memberCount} Members`).then(msg => msg.delete(5000));
                                         message.guild.members.forEach(member => {
-                                            
+                                            let bc = new Discord.RichEmbed()
+                                            .setColor("RANDOM")
+                                            .setThumbnail(message.author.avatarURL)
+                                            .setTitle("Broadcast")
+                                            .addField("Server", message.guild.name)
+                                            .addField("Sender", message.author.username)
+                                            .addField("Message", args);
 
                                             member.sendEmbed(bc);
                                         });
@@ -76,7 +82,14 @@ client.on("message", async message => {
                                 m.delete();
                                     message.channel.send(`:ballot_box_with_check: | Done ... The Broadcast Message Has Been Sent For ${message.guild.members.filter(r => r.presence.status !== "offline").size} Members`).then(msg => msg.delete(5000));
                                         message.guild.members.filter(r => r.presence.status !== "offline").forEach(member => {
-                                         
+                                            let bco = new Discord.RichEmbed()
+                                            .setColor("RANDOM")
+                                            .setThumbnail(message.author.avatarURL)
+                                            .setTitle("Broadcast")
+                                            .addField("Server", message.guild.name)
+                                            .addField("Sender", message.author.username)
+                                            .addField("Message", args);
+
                                             member.sendEmbed(bco);
                                         });
                         });
